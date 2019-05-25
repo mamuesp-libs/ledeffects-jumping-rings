@@ -12,17 +12,17 @@ static void mgos_intern_jumping_rings_loop(mgos_rgbleds* leds)
     int rings = mgos_sys_config_get_ledeffects_jumping_rings_count();
 
     while (run--) {
-        mgos_rgbleds_clear(leds);
+        mgos_universal_clear(leds);
         for (int col = 0; col < num_cols; col++) {
             for (int row = leds->pix_pos; row < (leds->pix_pos + rings); row++) {
                 int step = (num_cols * rings) ? (256 / (num_cols * rings)) : 0;
                 int pix_pos = (leds->pix_pos + col * step) % 256;
                 out_pix = tools_color_wheel(((row * 256 / num_rows) + pix_pos) & 255, 255.0);
                 LOG(LL_VERBOSE_DEBUG, ("ledeffects_jumping_rings:\tR: 0x%.02X\tG: 0x%.02X\tB: 0x%.02X", out_pix.r, out_pix.g, out_pix.b));
-                mgos_rgbleds_plot_pixel(leds, col, row, out_pix, true);
+                mgos_universal_led_plot_pixel(leds, col, row, out_pix, true);
             }
         }
-        mgos_rgbleds_show(leds);
+        mgos_universal_led_show(leds);
         leds->pix_pos = (leds->pix_pos + 1) % (num_rows - rings);
     }
 }
