@@ -54,7 +54,7 @@ void mgos_ledeffects_jumping_rings(void* param, mgos_rgbleds_action action)
     }
 }
 
-bool mgos_jumping_rings_init(void) {
+bool mgos_ledeffects_jumping_rings_init(void) {
   LOG(LL_INFO, ("mgos_jumping_rings_init ..."));
   ledmaster_add_effect("ANIM_JUMPING_RINGS", mgos_ledeffects_jumping_rings);
   return true;
